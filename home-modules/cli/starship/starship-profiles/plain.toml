@@ -1,0 +1,42 @@
+command_timeout = 1000
+scan_timeout    = 50
+add_newline     = false
+
+format = """
+$directory$git_branch$git_status$nix_shell
+$character"""
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
+
+[directory]
+style            = "bold blue"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = " [$branch]($style)"
+style  = "bold purple"
+
+[git_status]
+format    = "[$all_status]($style) "
+style     = "bold yellow"
+ahead     = "⇡${count}"
+behind    = "⇣${count}"
+diverged  = "⇕"
+modified  = "!${count}"
+untracked = "?${count}"
+staged    = "+${count}"
+
+[nix_shell]
+format   = " [nix]($style)"
+style    = "bold cyan"
+disabled = false
+
+[cmd_duration]
+min_time = 2000
+format   = " took [$duration]($style)"
+style    = "yellow"
+
+

@@ -1,0 +1,55 @@
+command_timeout = 1000
+scan_timeout    = 50
+add_newline     = false
+
+format = """
+[$username$hostname](bg:#3d59a1 fg:#c0caf5)\
+[](fg:#3d59a1 bg:#394b70)\
+[$directory](bg:#394b70 fg:#7aa2f7)\
+[](fg:#394b70 bg:#2d3f76)\
+[$git_branch$git_status](bg:#2d3f76 fg:#e0af68)\
+[](fg:#2d3f76)\
+$nix_shell $cmd_duration
+$character"""
+
+[username]
+format      = "[ $user ]($style)"
+style_user  = "bg:#3d59a1 fg:#c0caf5"
+style_root  = "bg:#c0392b fg:#ffffff bold"
+show_always = false
+
+[hostname]
+format   = "[@$hostname ]($style)"
+style    = "bg:#3d59a1 fg:#c0caf5"
+ssh_only = true
+disabled = false
+
+[directory]
+format            = "[ $path ]($style)"
+style             = "bg:#394b70 fg:#7aa2f7"
+truncation_length = 3
+
+[git_branch]
+format = "[ $branch ]($style)"
+style  = "bg:#2d3f76 fg:#e0af68"
+
+[git_status]
+format    = "[$all_status ]($style)"
+style     = "bg:#2d3f76 fg:#f7768e"
+modified  = "!${count}"
+untracked = "?"
+staged    = "+"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
+
+[nix_shell]
+format   = "[nix]($style)"
+style    = "bold cyan"
+disabled = false
+
+[cmd_duration]
+min_time = 2000
+format   = "[took $duration]($style)"
+style    = "yellow"

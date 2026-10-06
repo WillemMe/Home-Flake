@@ -1,0 +1,26 @@
+command_timeout = 1000
+scan_timeout    = 50
+add_newline     = false
+
+format = "$directory$git_branch$git_status$character"
+
+[directory]
+style              = "bold cyan"
+truncation_length  = 1
+truncate_to_repo   = true
+format             = "[$folder]($style) "
+
+[git_branch]
+format = "[$branch]($style) "
+style  = "bold purple"
+
+[git_status]
+format    = "[$all_status]($style)"
+style     = "yellow"
+modified  = "!"
+untracked = "?"
+staged    = "+"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"

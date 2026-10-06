@@ -1,0 +1,59 @@
+command_timeout = 1000
+scan_timeout    = 50
+add_newline     = false
+
+format = "$directory$git_branch$git_status$character"
+
+right_format = "$python$nodejs$rust$nix_shell$cmd_duration$status$time"
+
+[directory]
+style            = "bold blue"
+truncation_length = 3
+truncate_to_repo = true
+
+[git_branch]
+format = " [$branch]($style)"
+style  = "bold purple"
+
+[git_status]
+format    = "[$all_status]($style) "
+style     = "yellow"
+modified  = "!${count}"
+untracked = "?"
+staged    = "+"
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol   = "[❯](bold red)"
+
+[python]
+format = "[$symbol$pyenv_prefix($version)( $virtualenv)]($style) "
+style  = "yellow"
+
+[nodejs]
+format = "[$symbol($version)]($style) "
+style  = "green"
+
+[rust]
+format = "[$symbol($version)]($style) "
+style  = "red"
+
+[nix_shell]
+format   = "[nix]($style) "
+style    = "cyan"
+disabled = false
+
+[cmd_duration]
+min_time = 2000
+format   = "[took $duration]($style) "
+style    = "dimmed yellow"
+
+[status]
+disabled = false
+format   = "[$status]($style) "
+style    = "bold red"
+
+[time]
+disabled = false
+format   = "[$time]($style)"
+style    = "dimmed white"

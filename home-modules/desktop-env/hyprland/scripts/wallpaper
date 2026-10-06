@@ -1,0 +1,25 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p bash
+
+command='hyprctl hyprpaper wallpaper'
+# Replace /home/<you> with your home directory
+dir='/home/<you>/.config/hypr/wallpapers/'
+Wallpapers=()
+while IFS= read -r -d '' file
+do
+    Wallpapers+=("${file#*/}") 
+done < <(find $dir -maxdepth 1 -mindepth 1 -print0)
+# printf "%s\n" "${Wallpapers[@]}"
+
+Monitors=($(hyprctl -j monitors | jaq -r '.[].name'))
+
+if [ -z "$1" ] 
+  then
+  select=$(($RANDOM % ${#Wallpapers[@]}))
+else
+  select=$1
+fi
+
+for i in "${!Monitors[@]}"; do
+    $command ${Monitors[i]},/${Wallpapers[$select]}
+done
